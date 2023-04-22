@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
+import { httpInterceptorProviders } from './helpers/http.interceptor';
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,7 @@ import { ComponentsModule } from './components/components.module';
     AdminLayoutComponent,
     AuthLayoutComponent
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
