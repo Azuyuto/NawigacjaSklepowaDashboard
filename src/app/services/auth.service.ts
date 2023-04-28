@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const AUTH_API = 'http://localhost:5209/Auth/';
+const AUTH_API = 'https://localhost:7143/Auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', "X-Requested-With": "XMLHttpRequest" }),
   withCredentials: false
+};
+
+const httpOptionsLogin = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', "X-Requested-With": "XMLHttpRequest" }),
+  withCredentials: true
 };
 
 @Injectable({
@@ -19,10 +24,10 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'login',
       {
-        username,
-        password,
+        "email": "c@cos.pl",
+        "password": "Test1234",
       },
-      httpOptions
+      httpOptionsLogin
     );
   }
 
@@ -38,7 +43,7 @@ export class AuthService {
 
         "firstName": firstName,
         "lastName": "dab",
-        "email":"a@cos.pl",
+        "email":"a@costam.pl",
         "password":"Test1234",
         "confirmPassword":"Test1234"
       },
