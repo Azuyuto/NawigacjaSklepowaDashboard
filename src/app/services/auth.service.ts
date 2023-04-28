@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'http://localhost:5209/Auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', "X-Requested-With": "XMLHttpRequest" }),
   withCredentials: false
 };
 
@@ -30,11 +30,17 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'register',
       {
-        firstName,
-        lastName,
-        email,
-        password,
-        confirmPassword
+        // "firstName": firstName,
+        // "lastName": lastName,
+        // "email":email,
+        // "password":password,
+        // "confirmPassword":confirmPassword
+
+        "firstName": firstName,
+        "lastName": "dab",
+        "email":"a@cos.pl",
+        "password":"Test1234",
+        "confirmPassword":"Test1234"
       },
       httpOptions
     );
