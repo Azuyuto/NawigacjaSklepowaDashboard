@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { httpInterceptorProviders } from './helpers/http.interceptor';
+import { MainComponent } from './pages/main/main.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { httpInterceptorProviders } from './helpers/http.interceptor';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    MainComponent,
+    MainLayoutComponent
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

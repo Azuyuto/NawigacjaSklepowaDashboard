@@ -5,23 +5,31 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'main',
     pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
+  }, 
+  {
+    path: 'main',
+    component: MainLayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+        loadChildren: () => import('src/app/layouts/main-layout/main-layout.module').then(m => m.MainLayoutModule)
       }
     ]
-  }, {
-    path: '',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'dashboard',
     component: AuthLayoutComponent,
     children: [
       {
