@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CanActivate, Router, Routes } from '@angular/router';
+import { StorageService } from './storage.service';
 
 const AUTH_API = 'https://localhost:7143/Auth/';
 
@@ -53,5 +55,18 @@ export class AuthService {
 
   logout(): void {
     //return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+  }
+}
+
+@Injectable()
+export class CanActivateTest implements CanActivate
+{
+  constructor(public auth: StorageService, public router: Router) {}
+  canActivate(): boolean {
+    if (!this.auth.isLoggedIn()) {
+      this.router.navigate(['/main']);
+      return false;
+    }
+    return true;
   }
 }
