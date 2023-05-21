@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { CanActivateTest } from './services/auth.service';
 
 const routes: Routes =[
   {
@@ -31,6 +32,7 @@ const routes: Routes =[
   {
     path: 'dashboard',
     component: AuthLayoutComponent,
+    canActivate: [CanActivateTest],
     children: [
       {
         path: '',
@@ -53,5 +55,6 @@ const routes: Routes =[
   ],
   exports: [
   ],
+  providers: [CanActivateTest]
 })
 export class AppRoutingModule { }

@@ -12,9 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
-import { httpInterceptorProviders } from './helpers/http.interceptor';
-import { MainComponent } from './pages/main/main.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 
@@ -32,10 +29,9 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    MainComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
