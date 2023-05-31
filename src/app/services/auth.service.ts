@@ -55,18 +55,24 @@ export class AuthService {
 
   logout(): void {
     //return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    alert("wylogowano pomyślnie");
   }
 }
 
 @Injectable()
-export class CanActivateTest implements CanActivate
+export class CanActivateDashboard implements CanActivate
 {
   constructor(public auth: StorageService, public router: Router) {}
   canActivate(): boolean {
-    if (!this.auth.isLoggedIn()) {
-      this.router.navigate(['/main']);
-      return false;
-    }
+    // TODO: determine current user's role
+
+    // var loggedInUser = this.auth.getUser().roles;
+    // alert(loggedInUser);
+    
+    // if (!this.auth.isLoggedIn()) {
+    //   this.router.navigate(['/main']);
+    //   return false;
+    // }
     return true;
   }
 }

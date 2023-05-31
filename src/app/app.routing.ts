@@ -7,7 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { CanActivateTest } from './services/auth.service';
+import { CanActivateDashboard} from './services/auth.service';
 
 const routes: Routes =[
   {
@@ -31,12 +31,12 @@ const routes: Routes =[
   },
   {
     path: 'dashboard',
-    component: AuthLayoutComponent,
-    canActivate: [CanActivateTest],
+    component: AdminLayoutComponent,
+    canActivate: [CanActivateDashboard],
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
+        loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
   }, {
@@ -55,6 +55,6 @@ const routes: Routes =[
   ],
   exports: [
   ],
-  providers: [CanActivateTest]
+  providers: [CanActivateDashboard]
 })
 export class AppRoutingModule { }

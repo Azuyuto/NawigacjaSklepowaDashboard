@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     const { username, password } = this.form;
 
-    // alert(lastName);
     this.isLoggedIn = true;
     this.authService.login(username, password).subscribe({
       next: data => {
