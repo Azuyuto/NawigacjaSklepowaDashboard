@@ -12,11 +12,11 @@ import { CanActivateTest } from './services/auth.service';
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'login',
     pathMatch: 'full',
   }, 
   {
-    path: 'main',
+    path: '',
     component: MainLayoutComponent,
     children: [
       {
@@ -26,11 +26,7 @@ const routes: Routes =[
     ]
   },
   {
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: 'dashboard',
+    path: '',
     component: AuthLayoutComponent,
     canActivate: [CanActivateTest],
     children: [
@@ -49,9 +45,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [
   ],
