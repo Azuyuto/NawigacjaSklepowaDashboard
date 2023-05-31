@@ -12,11 +12,11 @@ import { CanActivateDashboard} from './services/auth.service';
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'login',
     pathMatch: 'full',
   }, 
   {
-    path: 'main',
+    path: '',
     component: MainLayoutComponent,
     children: [
       {
@@ -26,6 +26,7 @@ const routes: Routes =[
     ]
   },
   {
+    // TODO: delete direct paths, use '' instead and proper auth guards
     path: 'register',
     component: RegisterComponent,
   },
@@ -49,9 +50,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-      useHash: true
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [
   ],
