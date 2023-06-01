@@ -13,12 +13,21 @@ export class StorageService {
     window.sessionStorage.clear();
   }
 
-  public saveUser(token: any, user: any): void {
+  public saveToken(token: any)
+  {
+    token = token.replace(/^"|"$|"(?=\s)|"(?=\W)/g, '');
+    window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+  }
+
+  public getToken(){
+    const token = window.sessionStorage.getItem(TOKEN_KEY);
+    return token;
+  }
+
+  public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, JSON.stringify(token));
   }
 
   public getUser(): any {

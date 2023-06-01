@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.authService.login(email, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data.token, data.user);
+        this.storageService.saveToken(data.token);
+        this.storageService.saveUser(data.user);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.reloadPage();
