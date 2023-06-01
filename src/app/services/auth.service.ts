@@ -65,6 +65,7 @@ export class CanActivateDashboard implements CanActivate
   constructor(public auth: StorageService, public router: Router) {}
   canActivate(): boolean {
     // TODO: determine current user's role
+    // TODO: routing - auth guardy, path to ""
 
     // var loggedInUser = this.auth.getUser().roles;
     // alert(loggedInUser);
