@@ -27,9 +27,13 @@
             <i class="ni ni-single-02"></i>
             <span>Mój profil</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['/create-shop']" class="dropdown-item">
+          <a *ngIf="isClient" routerLinkActive="active" [routerLink]="['/create-shop']" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Otwórz sklep!</span>
+          </a>
+          <a *ngIf="!isClient" routerLinkActive="active" [routerLink]="['/view-shop', 0]" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>Twój sklep</span>
           </a>
           <div class="dropdown-divider"></div>
           <a href="javascript:(0);" (click)="Logout()" class="dropdown-item">

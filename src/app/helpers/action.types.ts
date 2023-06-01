@@ -1,4 +1,5 @@
 export enum ActionTypes {
     None,
-    Logout
+    Logout,
+    ListShop
 }

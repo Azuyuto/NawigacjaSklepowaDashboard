@@ -19,10 +19,49 @@ export class StorageService {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
-
+  // client
+  // employee
+  // manager
+  // shopadmin
+  // appadmin
   public getToken(){
     const token = window.sessionStorage.getItem(TOKEN_KEY);
     return token;
+  }
+
+  public isClient(){
+    const base64Url = this.getToken().split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedToken = JSON.parse(window.atob(base64));
+    return decodedToken && decodedToken["client"] !== undefined;
+  }
+
+  public isEmployee(){
+    const base64Url = this.getToken().split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedToken = JSON.parse(window.atob(base64));
+    return decodedToken && decodedToken["employee"] !== undefined;
+  }
+
+  public isManager(){
+    const base64Url = this.getToken().split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedToken = JSON.parse(window.atob(base64));
+    return decodedToken && decodedToken["manager"] !== undefined;
+  }
+
+  public isShopAdmin(){
+    const base64Url = this.getToken().split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedToken = JSON.parse(window.atob(base64));
+    return decodedToken && decodedToken["shopAdmin"] !== undefined;
+  }
+
+  public isAppadmin(){
+    const base64Url = this.getToken().split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const decodedToken = JSON.parse(window.atob(base64));
+    return decodedToken && decodedToken["isAppadmin"] !== undefined;
   }
 
   public saveUser(user: any): void {

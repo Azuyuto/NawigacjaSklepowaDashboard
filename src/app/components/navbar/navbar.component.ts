@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public location: Location;
   public email: string;
+  isClient: any;
   constructor(location: Location,  private element: ElementRef, private router: Router, private appComponent: AppComponent, private storageService: StorageService) {
     this.location = location;
   }
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.email = this.storageService.getUser().email;
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.isClient = this.storageService.isClient();
   }
 
   getTitle(){
@@ -39,8 +41,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    console.log(123);
     this.appComponent.logout();
   }
-
 }

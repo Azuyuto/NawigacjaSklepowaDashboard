@@ -13,6 +13,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { httpInterceptorProviders } from './helpers/http.interceptor';
+import { ViewShopComponent } from './pages/shop/view-shop/view-shop.component';
+import { ListShopComponent } from './pages/shop/list-shop/list-shop.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { httpInterceptorProviders } from './helpers/http.interceptor';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule
   ],
   declarations: [
     AppComponent,

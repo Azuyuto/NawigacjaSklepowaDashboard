@@ -1,0 +1,47 @@
+<div class="header pb-8 pt-5 pt-lg-8 align-items-center bg-gradient-danger">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid align-items-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-2 text-white">Lista sklepów</h1>
+          <p class="text-white mt-0 mb-5">
+            Poniżej znajduje się lista sklepów
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3 pb-3">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Kod pocztowy</th>
+                    <th scope="col">Miasto</th>
+                    <th scope="col">Kraj</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of shopList">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.postalCode }}</td>
+                        <td>{{ item.city }}</td>
+                        <td>{{ item.country }}</td>
+                        <td><a [routerLink]="['/view-shop', item.id]"><i class="ni ni-active-40"></i> Zobacz</a></td>
+                      </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

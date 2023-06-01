@@ -13,6 +13,9 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateShopComponent } from 'src/app/pages/shop/create-shop/create-shop.component';
+import { ViewShopComponent } from 'src/app/pages/shop/view-shop/view-shop.component';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -22,7 +25,8 @@ import { CreateShopComponent } from 'src/app/pages/shop/create-shop/create-shop.
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    ComponentsModule
   ],
   declarations: [
     DashboardComponent,
@@ -30,7 +34,9 @@ import { CreateShopComponent } from 'src/app/pages/shop/create-shop/create-shop.
     TablesComponent,
     IconsComponent,
     MapsComponent,
-    CreateShopComponent
+    CreateShopComponent,
+    ViewShopComponent,
+    ListShopComponent
   ]
 })
 
