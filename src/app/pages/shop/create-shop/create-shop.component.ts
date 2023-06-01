@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  selector: 'app-create-shop',
+  templateUrl: './create-shop.component.html',
+  styleUrls: ['./create-shop.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class CreateShopComponent implements OnInit {
+
   form: any = {
     name: "",
   };

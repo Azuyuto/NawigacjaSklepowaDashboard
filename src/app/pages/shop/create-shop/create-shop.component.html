@@ -1,0 +1,53 @@
+<div class="header pb-8 pt-5 pt-lg-8 align-items-center bg-gradient-danger">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid align-items-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-2 text-white">Dodaj sklep</h1>
+          <p class="text-white mt-0 mb-5">Poniższym formularzem możesz dodać swój własny sklep i stać się jego właścicielem!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <form
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+                <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-basket"></i></span>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="form.name"
+                            placeholder="Nazwa"
+                            required
+                            #name="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && name.errors }"
+                        />        
+                        <div *ngIf="name.errors && f.submitted" class="invalid-feedback">
+                            Nazwa jest wymagana
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary my-4">Dodaj swój sklep</button>
+                  </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

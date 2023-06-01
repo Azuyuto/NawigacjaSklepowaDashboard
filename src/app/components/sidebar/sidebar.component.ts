@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { ActionTypes } from 'src/app/helpers/action.types';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -29,7 +30,7 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -45,6 +46,6 @@ export class SidebarComponent implements OnInit {
   }
 
   Logout(){
-    this.authService.logout();
+    this.appComponent.logout();
   }
 }

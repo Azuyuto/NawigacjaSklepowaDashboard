@@ -28,7 +28,7 @@ import { httpInterceptorProviders } from './helpers/http.interceptor';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
+    AuthLayoutComponent
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
