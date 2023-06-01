@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +14,16 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router, private appComponent: AppComponent) {
+  public email: string;
+  constructor(location: Location,  private element: ElementRef, private router: Router, private appComponent: AppComponent, private storageService: StorageService) {
     this.location = location;
   }
 
   ngOnInit() {
+    this.email = this.storageService.getUser().email;
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
