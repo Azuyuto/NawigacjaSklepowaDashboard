@@ -7,7 +7,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { CanActivateTest } from './services/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { NoAuthGuard } from './auth/no-auth.guard';
 
 const routes: Routes =[
   {
@@ -18,6 +19,7 @@ const routes: Routes =[
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [NoAuthGuard],
     children: [
       {
         path: '',
@@ -28,7 +30,7 @@ const routes: Routes =[
   {
     path: '',
     component: AuthLayoutComponent,
-    canActivate: [CanActivateTest],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -49,6 +51,6 @@ const routes: Routes =[
   ],
   exports: [
   ],
-  providers: [CanActivateTest]
+  providers: [AuthGuard, NoAuthGuard]
 })
 export class AppRoutingModule { }

@@ -26,47 +26,27 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'login',
       {
-        "email": "c@cos.pl",
-        "password": "Test1234",
+        "email": username,
+        "password": password,
       },
       httpOptionsLogin
     );
   }
 
-  register(firstName: string, lastName: string, email: string, password: string, confirmPassword: string): Observable<any> {
+  register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
     return this.http.post(
       AUTH_API + 'register',
       {
-        // "firstName": firstName,
-        // "lastName": lastName,
-        // "email":email,
-        // "password":password,
-        // "confirmPassword":confirmPassword
-
         "firstName": firstName,
-        "lastName": "dab",
-        "email":"a@costam.pl",
-        "password":"Test1234",
-        "confirmPassword":"Test1234"
+        "lastName": lastName,
+        "email":email,
+        "password":password,
       },
       httpOptions
     );
   }
 
-  logout(): void {
-    //return this.http.post(AUTH_API + 'signout', { }, httpOptions);
-  }
-}
-
-@Injectable()
-export class CanActivateTest implements CanActivate
-{
-  constructor(public auth: StorageService, public router: Router) {}
-  canActivate(): boolean {
-    if (!this.auth.isLoggedIn()) {
-      this.router.navigate(['/main']);
-      return false;
-    }
-    return true;
+  logout(): Observable<any> {
+    return;
   }
 }

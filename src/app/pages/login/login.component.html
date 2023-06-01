@@ -3,13 +3,31 @@
     <div class="text-center text-muted mb-4">
       <small>Logowanie</small>
     </div>
-    <form role="form">
+    <form       
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
       <div class="form-group mb-3">
         <div class="input-group input-group-alternative">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
           </div>
-          <input class="form-control" placeholder="Email" type="email">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="form.email"
+            placeholder="Email"
+            required
+            #email="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+          />        
+          <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+            Email jest wymagany
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -17,19 +35,31 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
           </div>
-          <input class="form-control" placeholder="Password" type="password">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            placeholder="Hasło"
+            #password="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+          /> 
+          <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+            <div *ngIf="password.errors['required']">Hasło jest wymagane</div>      
+          </div>
         </div>
       </div>
-      <div class="custom-control custom-control-alternative custom-checkbox">
-        <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-        <label class="custom-control-label" for=" customCheckLogin">
-          <span class="text-muted">Zapamiętaj mnie</span>
-        </label>
-      </div>
       <div class="text-center">
-        <button type="button" class="btn btn-primary my-4">Zaloguj</button>
+        <button type="submit" class="btn btn-primary my-4">Zaloguj</button>
+      </div>
+      <div class="alert alert-warning mt-3 text-center" *ngIf="f.submitted && isLoginFailed">
+        Wystąpił błąd: <br />{{ errorMessage }}
       </div>
     </form>
+    <div class="alert alert-success mt-3 text-center" *ngIf="!isLoginFailed">
+      Zalogowano pomyślnie!
+    </div>
   </div>
 </div>
 <div class="row mt-3">

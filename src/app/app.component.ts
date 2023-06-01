@@ -8,13 +8,29 @@ import { StorageService } from './services/storage.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private roles: string[] = [];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
+  email?: string;
 
   constructor(private storageService: StorageService, private authService: AuthService) { }
 
-  title = 'nawigacja-sklepowa';
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const user = this.storageService.getUser();
+      this.email = user.email;
+    }
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: res => {
+        this.storageService.clean();
+        window.location.reload();
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
 }
