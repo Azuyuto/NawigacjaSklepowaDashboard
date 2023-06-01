@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CanActivate, Router, Routes } from '@angular/router';
-import { StorageService } from './storage.service';
+import { Observable, of } from 'rxjs';
 
 const AUTH_API = 'https://localhost:7143/Auth/';
 
@@ -47,6 +45,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return;
+    return of(null);;
   }
 }

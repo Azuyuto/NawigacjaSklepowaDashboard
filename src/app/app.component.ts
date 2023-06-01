@@ -23,6 +23,7 @@ export class AppComponent {
   }
 
   logout(): void {
+    console.log(456);
     this.authService.logout().subscribe({
       next: res => {
         this.storageService.clean();
