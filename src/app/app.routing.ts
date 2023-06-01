@@ -5,35 +5,30 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { CanActivateDashboard} from './services/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { NoAuthGuard } from './auth/no-auth.guard';
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   }, 
   {
     path: '',
-    component: MainLayoutComponent,
+    component: AuthLayoutComponent,
+    canActivate: [NoAuthGuard],
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/layouts/main-layout/main-layout.module').then(m => m.MainLayoutModule)
+        loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
   },
   {
-    // TODO: delete direct paths, use '' instead and proper auth guards
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: 'dashboard',
+    path: '',
     component: AdminLayoutComponent,
-    canActivate: [CanActivateDashboard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -54,6 +49,6 @@ const routes: Routes =[
   ],
   exports: [
   ],
-  providers: [CanActivateDashboard]
+  providers: [AuthGuard, NoAuthGuard]
 })
 export class AppRoutingModule { }

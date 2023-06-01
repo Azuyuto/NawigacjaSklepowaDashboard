@@ -4,7 +4,7 @@
     <div class="text-center text-muted mb-4">
       <small>Rejestracja</small>
     </div>
-    <form role="form" 
+    <form
       *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
@@ -22,10 +22,11 @@
             [(ngModel)]="form.firstName"
             placeholder="Imię"
             required
-            #username="ngModel"
+            minlength="3"
+            #firstName="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && firstName.errors }">
             <div class="invalid-feedback" *ngIf="firstName.errors && f.submitted">
-              <div *ngIf="firstName.errors['required']">Imię jest wymagana</div>
+              <div *ngIf="firstName.errors['required']">Imię jest wymagane</div>
             </div>
         </div>
       </div>
@@ -41,10 +42,10 @@
             [(ngModel)]="form.lastName"
             placeholder="Nazwisko"
             required
-            #username="ngModel"
+            #lastName="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && lastName.errors }">
             <div class="invalid-feedback" *ngIf="lastName.errors && f.submitted">
-              <div *ngIf="lastName.errors['required']">Nazwisko jest wymagana</div>
+              <div *ngIf="lastName.errors['required']">Nazwisko jest wymagane</div>
             </div>
         </div>
       </div>
@@ -84,6 +85,7 @@
             [(ngModel)]="form.password"
             placeholder="Hasło"
             required
+            pattern="{{ '^(?=.*[A-Z]).+$' }}"
             minlength="6"
             #password="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
@@ -92,6 +94,9 @@
             <div *ngIf="password.errors['required']">Hasło jest wymagane</div>
             <div *ngIf="password.errors['minlength']">
               Hasło musi posiadać conajmniej 6 znaków.
+            </div>
+            <div *ngIf="password.errors['pattern']">
+              Hasło musi mieć minimum jedną wielką litere.
             </div>
           </div>
         </div>
@@ -108,23 +113,26 @@
             [(ngModel)]="form.confirmPassword"
             placeholder="Potwierdź hasło"
             required
-            #password="ngModel"
+            pattern="{{ password.value }}"
+            #confirmPassword="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.errors }"
             />
           <div class="invalid-feedback" *ngIf="confirmPassword.errors && f.submitted">
             <div *ngIf="confirmPassword.errors['required']">Potwierdzenie hasła jest wymagane</div>
+            <div *ngIf="confirmPassword.errors['pattern']">Hasło i potwierdzenie hasła muszą być takie same</div>
           </div>
         </div>
       </div>
       <div class="text-center">
         <button type="submit" class="btn btn-primary mt-4">Zarejestruj</button>
       </div>
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      <div class="alert alert-warning mt-3 text-center" *ngIf="f.submitted && isSignUpFailed">
         Wystąpił błąd podczas rejestracji!<br />{{ errorMessage }}
       </div>
     </form>
-    <div class="alert alert-success" *ngIf="isSuccessful">
+    <div class="alert alert-success mt-3 text-center" *ngIf="isSuccessful">
       Zarejestrowano pomyślnie!
+      <a href="/login" class="text-danger">Zaloguj się</a>
     </div>
   </div>
 </div>

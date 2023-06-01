@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CanActivate, Router, Routes } from '@angular/router';
-import { StorageService } from './storage.service';
+import { Observable, of } from 'rxjs';
 
 const AUTH_API = 'https://localhost:7143/Auth/';
 
@@ -26,54 +24,27 @@ export class AuthService {
     return this.http.post(
       AUTH_API + 'login',
       {
-        "email": "c@cos.pl",
-        "password": "Test1234",
+        "email": username,
+        "password": password,
       },
       httpOptionsLogin
     );
   }
 
-  register(firstName: string, lastName: string, email: string, password: string, confirmPassword: string): Observable<any> {
+  register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
     return this.http.post(
       AUTH_API + 'register',
       {
-        // "firstName": firstName,
-        // "lastName": lastName,
-        // "email":email,
-        // "password":password,
-        // "confirmPassword":confirmPassword
-
         "firstName": firstName,
-        "lastName": "dab",
-        "email":"a@costam.pl",
-        "password":"Test1234",
-        "confirmPassword":"Test1234"
+        "lastName": lastName,
+        "email":email,
+        "password":password,
       },
       httpOptions
     );
   }
 
-  logout(): void {
-    //return this.http.post(AUTH_API + 'signout', { }, httpOptions);
-    alert("wylogowano pomyślnie");
-  }
-}
-
-@Injectable()
-export class CanActivateDashboard implements CanActivate
-{
-  constructor(public auth: StorageService, public router: Router) {}
-  canActivate(): boolean {
-    // TODO: determine current user's role
-    // TODO: routing - auth guardy, path to ""
-
-    // var loggedInUser = this.auth.getUser().roles;
-    // alert(loggedInUser);
-    
-    // if (!this.auth.isLoggedIn()) {
-    //   this.router.navigate(['/main']);
-    //   return false;
-    // }
-    return true;
+  logout(): Observable<any> {
+    return of(null);;
   }
 }

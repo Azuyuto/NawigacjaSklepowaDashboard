@@ -9,13 +9,12 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   form: any = {
-    username: "",
+    email: "",
     password: "",
   };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
   
   constructor(private authService: AuthService, private storageService: StorageService) { }
 
@@ -23,27 +22,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
     }
   }
   ngOnDestroy() {
   }
 
   onSubmit(): void {
-    const { username, password } = this.form;
+    const { email, password } = this.form;
 
-    this.isLoggedIn = true;
-    this.authService.login(username, password).subscribe({
+    this.authService.login(email, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
-
+        this.storageService.saveUser(data.token, data.user);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
         this.reloadPage();
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        console.log(err);
+        this.errorMessage = err.error;
         this.isLoginFailed = true;
       }
     });
