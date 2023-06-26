@@ -9,7 +9,10 @@ import { ShopService } from 'src/app/services/shop.service';
 })
 export class ListShopComponent implements OnInit {
   public shopList: any[];
+  isClient: any;
+
   constructor(private route: ActivatedRoute, private shopService: ShopService) {
+    this.isClient = shopService.isClient;
   }
 
   ngOnInit(): void {

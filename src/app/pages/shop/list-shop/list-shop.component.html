@@ -9,6 +9,9 @@
           <p class="text-white mt-0 mb-5">
             Poniżej znajduje się lista sklepów
           </p>
+          <a [routerLink]="['/create-shop']">
+            <button class="btn btn-primary my-4" *ngIf="isClient">Otwórz nowy sklep!</button>
+          </a>
         </div>
       </div>
     </div>

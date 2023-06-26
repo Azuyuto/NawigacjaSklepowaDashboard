@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserRoles} from '../helpers/userRoles'
 
 const USER_KEY = 'auth-user';
 const TOKEN_KEY = 'auth-token';
@@ -30,7 +31,12 @@ export class StorageService {
   }
 
   public isClient(){
-    const base64Url = this.getToken().split('.')[1];
+    var token = this.getToken();
+
+    if (token === null)
+      return false;
+
+    const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const decodedToken = JSON.parse(window.atob(base64));
     return decodedToken && decodedToken["client"] !== undefined;
@@ -80,10 +86,17 @@ export class StorageService {
 
   public isLoggedIn(): boolean {
     const token = window.sessionStorage.getItem(TOKEN_KEY);
+
     if (token) {
       return true;
     }
 
     return false;
+  }
+
+  public IsLoggedInAsShopAdmin(): boolean{
+    const user = this.getUser();
+
+    return user.roleId == UserRoles.ShopAdmin;
   }
 }

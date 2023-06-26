@@ -8,6 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { CreateShopComponent } from 'src/app/pages/shop/create-shop/create-shop.component';
 import { ViewShopComponent } from 'src/app/pages/shop/view-shop/view-shop.component';
 import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.component';
+import { ShopAdminAuthGuard } from 'src/app/auth/shopAdmin.auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -15,7 +16,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'create-shop',    component: CreateShopComponent },
+    { path: 'create-shop',    component: CreateShopComponent, canActivate: [ShopAdminAuthGuard] },
     { path: 'view-shop/:id',      component: ViewShopComponent },
     { path: 'list-shop',      component: ListShopComponent },
 ];

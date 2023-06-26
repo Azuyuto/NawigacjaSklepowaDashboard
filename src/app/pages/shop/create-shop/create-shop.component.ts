@@ -34,11 +34,12 @@ export class CreateShopComponent implements OnInit {
     this.shopService.createShop(name, address, postalCode, city, country, email, phone).subscribe({
       next: data => {
         this.storageService.saveToken(data.token);
+        this.storageService.saveUser(data.user.result)
         this.isFormFailed = false;
         this.isFormSuccess = true;
         setTimeout(() => {
-          this.router.navigate(['/dashboard']);
-        }, 2000);
+          window.location.assign('/list-shop');
+        }, 1500);
       },
       error: err => {
         console.log(err);
@@ -47,5 +48,4 @@ export class CreateShopComponent implements OnInit {
       }
     });
   }
-
 }

@@ -11,20 +11,9 @@ import { NoAuthGuard } from './auth/no-auth.guard';
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'list-shop',
     pathMatch: 'full',
   }, 
-  {
-    path: '',
-    component: AuthLayoutComponent,
-    canActivate: [NoAuthGuard],
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
-      }
-    ]
-  },
   {
     path: '',
     component: AdminLayoutComponent,
@@ -35,9 +24,17 @@ const routes: Routes =[
         loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
+  },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    canActivate: [NoAuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
+      }
+    ]
   }
 ];
 

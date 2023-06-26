@@ -15,9 +15,12 @@ var httpOptions = {
 
 export class ShopService {
   userId: any;
+  isClient: any;
+
   constructor(private http: HttpClient, private storageService: StorageService) {
     httpOptions.headers = httpOptions.headers.set("Authorization", "Bearer " + storageService.getToken());
     this.userId = storageService.getUser().id;
+    this.isClient = storageService.isClient();
   }
 
   createShop(name: any, address: any, postalCode: any, city: any, country: any, email: any, phone: any): Observable<any> {
