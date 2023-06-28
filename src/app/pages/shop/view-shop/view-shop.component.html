@@ -19,12 +19,14 @@
   </div>
   <div class="container mt--8 pb-5">
     <div class="row justify-content-center">
-      <div class="col-lg-7 col-md-9">
+      <div class="col-lg-10 col-md-12">
         <div class="card bg-secondary shadow border-0">
           <div class="card-body px-lg-5 py-lg-5">
             <div class="text-center">
               <p>Wygląd sklepu</p>
-              <canvas #myCanvas></canvas>
+              <button (click)="addRectangle()" class="btn btn-primary">Dodaj sektor</button>
+              <button (click)="exportObjects()" class="btn btn-success">Zapisz schemat</button>
+              <canvas class="mt-1" #myCanvas width="600" height="400"></canvas>
             </div>
           </div>
         </div>
