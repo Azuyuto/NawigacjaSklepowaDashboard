@@ -11,6 +11,8 @@ import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.compon
 import { ShopAdminAuthGuard } from 'src/app/auth/shopAdmin.auth.guard';
 import { AddProductComponent } from 'src/app/pages/product/add-product/add-product.component';
 import { ListProductsComponent } from 'src/app/pages/product/list-products/list-products.component';
+import { AddEmployeeComponent } from 'src/app/pages/employee/add-employee/add-employee.component';
+import { ListEmployeesComponent } from 'src/app/pages/employee/list-employees/list-employees.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -23,4 +25,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'list-products',      component: ListProductsComponent },
     { path: 'view-shop/:id',      component: ViewShopComponent },
     { path: 'list-shop',      component: ListShopComponent },
+    { path: 'add-employee',      component: AddEmployeeComponent },
+    { path: 'list-employees',      component: ListEmployeesComponent },
 ];

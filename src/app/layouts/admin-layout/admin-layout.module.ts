@@ -18,6 +18,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.component';
 import { AddProductComponent } from 'src/app/pages/product/add-product/add-product.component';
 import { ListProductsComponent } from 'src/app/pages/product/list-products/list-products.component';
+import { AddEmployeeComponent } from 'src/app/pages/employee/add-employee/add-employee.component';
+import { ListEmployeesComponent } from 'src/app/pages/employee/list-employees/list-employees.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -38,9 +40,11 @@ import { ListProductsComponent } from 'src/app/pages/product/list-products/list-
     MapsComponent,
     CreateShopComponent,
     ViewShopComponent,
-    ListShopComponent,
     AddProductComponent,
-    ListProductsComponent
+    AddEmployeeComponent,
+    ListShopComponent,
+    ListProductsComponent,
+    ListEmployeesComponent
   ]
 })
 

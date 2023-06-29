@@ -5,12 +5,12 @@
     <div class="container-fluid align-items-center">
       <div class="row">
         <div class="col-12 text-center">
-          <h1 class="display-2 text-white">Lista sklepów</h1>
+          <h1 class="display-2 text-white">Lista pracowników</h1>
           <p class="text-white mt-0 mb-5">
-            Poniżej znajduje się lista sklepów
+            Poniżej znajduje się lista Twoich pracowników.
           </p>
-          <a [routerLink]="['/create-shop']">
-            <button class="btn btn-primary my-4" *ngIf="isClient">Otwórz nowy sklep!</button>
+          <a [routerLink]="['/add-employee']">
+            <button class="btn btn-primary my-4">Dodaj pracownika!</button>
           </a>
         </div>
       </div>
@@ -24,24 +24,17 @@
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nazwa</th>
-                    <th scope="col">Adres</th>
-                    <th scope="col">Kod pocztowy</th>
-                    <th scope="col">Miasto</th>
-                    <th scope="col">Kraj</th>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">ID sklepu</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of shopList">
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.address }}</td>
-                        <td>{{ item.postalCode }}</td>
-                        <td>{{ item.city }}</td>
-                        <td>{{ item.country }}</td>
-                        <td><a [routerLink]="['/view-shop', item.id]"><i class="ni ni-active-40"></i> Zobacz</a></td>
+                    <tr *ngFor="let item of employeeList">
+                        <td>{{ item.firstName }}</td>
+                        <td>{{ item.lastName }}</td>
+                        <td>{{ item.shopId }}</td>
                       </tr>
                 </tbody>
             </table>

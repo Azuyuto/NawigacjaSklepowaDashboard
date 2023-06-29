@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product-service.service';
+import { ProductService } from 'src/app/services/product.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -14,9 +14,7 @@ export class AddProductComponent implements OnInit {
     description: "",
     category: "",
     price: null,
-    floor: null,
-    shelves: "",
-    shopId: null
+    shelfId: null
   };
 
   errorMessage = '';
@@ -31,8 +29,8 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { name, description, category, price, floor, shelves, shopId } = this.form;
-    this.productService.addProduct(name, description, category, price, floor, shelves, shopId).subscribe({
+    const { name, description, category, price, shelfId } = this.form;
+    this.productService.addProduct(name, description, category, price, shelfId).subscribe({
       next: data => {
         this.isFormFailed = false;
         this.isFormSuccess = true;

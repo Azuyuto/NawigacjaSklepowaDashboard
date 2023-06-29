@@ -1,0 +1,172 @@
+<div class="header pb-8 pt-5 pt-lg-8 align-items-center bg-gradient-danger">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid align-items-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-2 text-white">Dodaj pracownika</h1>
+          <p class="text-white mt-0 mb-5">Poniższym formularzem możesz dodać pracownika do Twojego sklepu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <form
+                *ngIf="!isFormSuccess"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+                <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-basket"></i></span>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="firstName"
+                            [(ngModel)]="form.firstName"
+                            placeholder="Imię"
+                            required
+                            #firstName="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && firstName.errors }">      
+                        <div *ngIf="firstName.errors && f.submitted" class="invalid-feedback">
+                          <div *ngIf="firstName.errors['required']">Nazwa jest wymagana</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input 
+                        type="text"
+                        class="form-control"
+                        name="lastName"
+                        [(ngModel)]="form.lastName"
+                        placeholder="Nazwisko"
+                        required
+                        #lastName="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && lastName.errors }">
+                        <div class="invalid-feedback" *ngIf="lastName.errors && f.submitted">
+                            <div *ngIf="lastName.errors['required']">Nazwisko jest wymagane</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="shopId"
+                        [(ngModel)]="form.shopId"
+                        placeholder="ID sklepu"
+                        required
+                        #shopId="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && shopId.errors }"
+                        />
+                    <div class="invalid-feedback" *ngIf="shopId.errors && f.submitted">
+                        <div *ngIf="shopId.errors['required']">ID sklepu jest wymagane</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    [(ngModel)]="form.email"
+                    placeholder="Email"
+                    required
+                    email
+                    #email="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+                    />
+                    <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']">Email jest wymagany</div>
+                    <div *ngIf="email.errors['email']">
+                        Email nie jest poprawny.
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    placeholder="Hasło"
+                    required
+                    pattern="{{ '^(?=.*[A-Z]).+$' }}"
+                    minlength="6"
+                    #password="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                    />
+                    <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Hasło jest wymagane</div>
+                    <div *ngIf="password.errors['minlength']">
+                        Hasło musi posiadać conajmniej 6 znaków.
+                    </div>
+                    <div *ngIf="password.errors['pattern']">
+                        Hasło musi mieć minimum jedną wielką litere.
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input
+                    type="password"
+                    class="form-control"
+                    name="confirmPassword"
+                    [(ngModel)]="form.confirmPassword"
+                    placeholder="Potwierdź hasło"
+                    required
+                    pattern="{{ password.value }}"
+                    #confirmPassword="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.errors }"
+                    />
+                    <div class="invalid-feedback" *ngIf="confirmPassword.errors && f.submitted">
+                    <div *ngIf="confirmPassword.errors['required']">Potwierdzenie hasła jest wymagane</div>
+                    <div *ngIf="confirmPassword.errors['pattern']">Hasło i potwierdzenie hasła muszą być takie same</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary my-4">Dodaj pracownika</button>
+            </div>
+            <div class="alert alert-warning mt-3 text-center" *ngIf="f.submitted && isFormFailed">
+                Wystąpił błąd: <br />{{ errorMessage }}
+            </div>
+        </form>
+        <div class="alert alert-success mt-3 text-center" *ngIf="isFormSuccess">
+            Pomyślnie dodano pracownika!
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+  

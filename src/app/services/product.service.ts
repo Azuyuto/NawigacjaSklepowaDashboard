@@ -25,7 +25,7 @@ export class ProductService {
     this.isClient = storageService.isClient();
   }
 
-  addProduct(name: any, description: any, category: any, price: any, floor: any, shelves: any, shopId: any): Observable<any> {
+  addProduct(name: any, description: any, category: any, price: any, shelfId: any): Observable<any> {
     return this.http.post(
       AUTH_API + 'createProduct',
       {
@@ -33,9 +33,7 @@ export class ProductService {
         "description": description,
         "category": category,
         "price": price,
-        "floor": floor,
-        "shelves": shelves,
-        "shopId": shopId
+        "shelfId": shelfId
       },
       httpOptions
     );

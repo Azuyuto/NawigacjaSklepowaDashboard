@@ -110,58 +110,18 @@
                     <input
                         type="number"
                         class="form-control"
-                        name="floor"
-                        [(ngModel)]="form.floor"
-                        placeholder="Piętro"
+                        name="shelfId"
+                        [(ngModel)]="form.shelfId"
+                        placeholder="ID półki"
                         required
                         #floor="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && floor.errors }"
+                        [ngClass]="{ 'is-invalid': f.submitted && shelfId.errors }"
                     />        
-                    <div *ngIf="floor.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="floor.errors['required']">Piętro jest wymagane</div>
+                    <div *ngIf="shelfId.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="shelfId.errors['required']">ID półki jest wymagane</div>
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
-                    </div>
-                    <input
-                        type="text"
-                        class="form-control"
-                        name="shelves"
-                        [(ngModel)]="form.shelves"
-                        placeholder="Półki"
-                        required
-                        #shelves="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && shelves.errors }"
-                    />        
-                    <div *ngIf="shelves.errors && f.submitted" class="invalid-feedback">
-                      <div *ngIf="shelves.errors['required']">Półki są wymagane</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
-                      </div>
-                      <input
-                          type="number"
-                          class="form-control"
-                          name="shopId"
-                          [(ngModel)]="form.shopId"
-                          placeholder="ID sklepu"
-                          required
-                          #shopId="ngModel"
-                          [ngClass]="{ 'is-invalid': f.submitted && shopId.errors }"
-                      />        
-                      <div *ngIf="shopId.errors && f.submitted" class="invalid-feedback">
-                        <div *ngIf="shopId.errors['required']">ID sklepu jest wymagane</div>
-                      </div>
-                    </div>
-                  </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary my-4">Dodaj produkt</button>
                 </div>
