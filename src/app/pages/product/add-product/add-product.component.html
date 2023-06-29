@@ -1,0 +1,180 @@
+<div class="header pb-8 pt-5 pt-lg-8 align-items-center bg-gradient-danger">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid align-items-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-2 text-white">Dodaj produkt</h1>
+          <p class="text-white mt-0 mb-5">Poniższym formularzem możesz dodać produkty do Twojego sklepu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <form
+                *ngIf="!isFormSuccess"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+                <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-basket"></i></span>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            [(ngModel)]="form.name"
+                            placeholder="Nazwa"
+                            required
+                            #name="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && name.errors }"
+                        />        
+                        <div *ngIf="name.errors && f.submitted" class="invalid-feedback">
+                          <div *ngIf="name.errors['required']">Nazwa jest wymagana</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        [(ngModel)]="form.description"
+                        placeholder="Opis"
+                        required
+                        #description="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && description.errors }"
+                    />        
+                    <div *ngIf="description.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="description.errors['required']">Niepoprawny opis</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-square-pin"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="category"
+                        [(ngModel)]="form.category"
+                        placeholder="Kategoria"
+                        required
+                        #category="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && category.errors }"
+                    />        
+                    <div *ngIf="category.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="category.errors['required']">Kategoria jest wymagana</div>       
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                    </div>
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="price"
+                        [(ngModel)]="form.price"
+                        placeholder="Cena"
+                        required
+                        #price="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && price.errors }"
+                    />        
+                    <div *ngIf="price.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="price.errors['required']">Cena jest wymagana</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                    </div>
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="floor"
+                        [(ngModel)]="form.floor"
+                        placeholder="Piętro"
+                        required
+                        #floor="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && floor.errors }"
+                    />        
+                    <div *ngIf="floor.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="floor.errors['required']">Piętro jest wymagane</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="shelves"
+                        [(ngModel)]="form.shelves"
+                        placeholder="Półki"
+                        required
+                        #shelves="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && shelves.errors }"
+                    />        
+                    <div *ngIf="shelves.errors && f.submitted" class="invalid-feedback">
+                      <div *ngIf="shelves.errors['required']">Półki są wymagane</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                      </div>
+                      <input
+                          type="number"
+                          class="form-control"
+                          name="shopId"
+                          [(ngModel)]="form.shopId"
+                          placeholder="ID sklepu"
+                          required
+                          #shopId="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && shopId.errors }"
+                      />        
+                      <div *ngIf="shopId.errors && f.submitted" class="invalid-feedback">
+                        <div *ngIf="shopId.errors['required']">ID sklepu jest wymagane</div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary my-4">Dodaj produkt</button>
+                </div>
+                <div class="alert alert-warning mt-3 text-center" *ngIf="f.submitted && isFormFailed">
+                  Wystąpił błąd: <br />{{ errorMessage }}
+                </div>
+            </form>
+            <div class="alert alert-success mt-3 text-center" *ngIf="isFormSuccess">
+              Pomyślnie dodano produkt!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

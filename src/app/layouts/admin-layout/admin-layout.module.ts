@@ -16,6 +16,8 @@ import { CreateShopComponent } from 'src/app/pages/shop/create-shop/create-shop.
 import { ViewShopComponent } from 'src/app/pages/shop/view-shop/view-shop.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.component';
+import { AddProductComponent } from 'src/app/pages/product/add-product/add-product.component';
+import { ListProductsComponent } from 'src/app/pages/product/list-products/list-products.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.compon
     MapsComponent,
     CreateShopComponent,
     ViewShopComponent,
-    ListShopComponent
+    ListShopComponent,
+    AddProductComponent,
+    ListProductsComponent
   ]
 })
 
