@@ -13,7 +13,7 @@ declare interface RouteInfo {
     action: number;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: 'list-shop', title: 'Lista sklepów',  icon:'ni-shop text-blue', class: '', action: ActionTypes.ListShop },
+    { path: 'list-shop', title: 'Lista sklepów',  icon:'ni-bullet-list-67 text-blue', class: '', action: ActionTypes.ListShop },
     { path: 'create-shop', title: 'Otwórz sklep!',  icon:'ni-ruler-pencil text-blue', class: '', action: ActionTypes.None },
     { path: 'view-shop/0', title: 'Zobacz Twój sklep',  icon:'ni-shop text-blue', class: '', action: ActionTypes.None },
     { path: 'add-product', title: 'Dodaj produkt',  icon:'ni-fat-add text-blue', class: '', action: ActionTypes.None },

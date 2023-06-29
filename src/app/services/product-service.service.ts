@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
 
 const AUTH_API = 'https://localhost:7143/Product/';
+const GETPRODUCTS_API = 'getByUserId/'
 var httpOptions = {
   headers: new HttpHeaders({  'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', "X-Requested-With": "XMLHttpRequest" }),
   withCredentials: true,
@@ -15,6 +16,7 @@ var httpOptions = {
 
 export class ProductService {
   userId: any;
+  userEmail: any;
   isClient: any;
 
   constructor(private http: HttpClient, private storageService: StorageService) {
@@ -39,23 +41,7 @@ export class ProductService {
     );
   }
 
-  getShopList(): Observable<any> {
-    const requestOptions = {
-      headers: httpOptions.headers,
-      withCredentials: true
-    };
-    return this.http.get(AUTH_API, requestOptions);
-  }
-
-  getShop(shopId: any): Observable<any> {
-    const requestOptions = {
-      headers: httpOptions.headers,
-      withCredentials: true
-    };
-    return this.http.get(AUTH_API + shopId, requestOptions);
-  }
-
-  getUserShop(): Observable<any> {
+  getProductList(): Observable<any> {
     const requestOptions = {
       params: {
         "userId": this.userId
@@ -63,6 +49,6 @@ export class ProductService {
       headers: httpOptions.headers,
       withCredentials: true
     };
-    return this.http.get(AUTH_API + 'getByUserId', requestOptions);
+    return this.http.get(AUTH_API + GETPRODUCTS_API, requestOptions);
   }
 }

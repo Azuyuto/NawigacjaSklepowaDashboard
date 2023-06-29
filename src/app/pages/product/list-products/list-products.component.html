@@ -1,1 +1,51 @@
-<p>list-products works!</p>
+<div class="header pb-8 pt-5 pt-lg-8 align-items-center bg-gradient-danger">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid align-items-center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="display-2 text-white">Lista produktów</h1>
+          <p class="text-white mt-0 mb-5">
+            Poniżej znajduje się lista Twoich produktów.
+          </p>
+          <a [routerLink]="['/add-product']">
+            <button class="btn btn-primary my-4">Dodaj nowy produkt!</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3 pb-3">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col">Piętro</th>
+                    <th scope="col">Półki</th>
+                    <th scope="col">ID sklepu</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of productList">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.floor }}</td>
+                        <td>{{ item.shelves }}</td>
+                        <td>{{ item.shopId }}</td>
+                      </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
