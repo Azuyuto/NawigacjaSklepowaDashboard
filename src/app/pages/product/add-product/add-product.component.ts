@@ -35,7 +35,7 @@ export class AddProductComponent implements OnInit {
         this.isFormFailed = false;
         this.isFormSuccess = true;
         setTimeout(() => {
-          window.location.assign('/list-products');
+          window.location.assign('/view-shop/0');
         }, 1500);
       },
       error: err => {

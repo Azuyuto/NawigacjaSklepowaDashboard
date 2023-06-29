@@ -10,7 +10,6 @@ import { ViewShopComponent } from 'src/app/pages/shop/view-shop/view-shop.compon
 import { ListShopComponent } from 'src/app/pages/shop/list-shop/list-shop.component';
 import { ShopAdminAuthGuard } from 'src/app/auth/shopAdmin.auth.guard';
 import { AddProductComponent } from 'src/app/pages/product/add-product/add-product.component';
-import { ListProductsComponent } from 'src/app/pages/product/list-products/list-products.component';
 import { AddEmployeeComponent } from 'src/app/pages/employee/add-employee/add-employee.component';
 import { ListEmployeesComponent } from 'src/app/pages/employee/list-employees/list-employees.component';
 
@@ -22,7 +21,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'create-shop',    component: CreateShopComponent, canActivate: [ShopAdminAuthGuard] },
     { path: 'add-product',      component: AddProductComponent },
-    { path: 'list-products',      component: ListProductsComponent },
     { path: 'view-shop/:id',      component: ViewShopComponent },
     { path: 'list-shop',      component: ListShopComponent },
     { path: 'add-employee',      component: AddEmployeeComponent },

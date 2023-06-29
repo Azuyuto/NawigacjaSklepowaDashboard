@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
@@ -17,8 +18,9 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
   private isResizing = false;
   private lastMoveX: number;
   private lastMoveY: number;
+  public productList: any[];
 
-  constructor(private route: ActivatedRoute, private shopService: ShopService) { }
+  constructor(private route: ActivatedRoute, private shopService: ShopService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -46,6 +48,15 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
         }
       });
     }
+
+    this.productService.getProductList().subscribe({
+      next: data => {
+        this.productList = data.products;
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
   ngAfterViewInit() {
