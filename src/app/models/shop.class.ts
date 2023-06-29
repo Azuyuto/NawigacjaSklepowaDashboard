@@ -1,9 +1,7 @@
 export class Shops {
-    shops: Shop[]
+    shop: Shop
 
-    constructor(){
-        this.shops = [];
-    }
+    constructor(){ }
 }
 
 export class Shop{

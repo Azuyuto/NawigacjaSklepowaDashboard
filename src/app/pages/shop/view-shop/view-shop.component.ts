@@ -142,6 +142,16 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
   }
 
   exportObjects() {
+    this.shopService.createShelves(this.objects).subscribe({
+      next: data => {
+        setTimeout(() => {
+          window.location.assign('/list-shop');
+        }, 1500);
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
     console.log(this.objects);
     // TODO: dodać zapis do bazy danych
   }
