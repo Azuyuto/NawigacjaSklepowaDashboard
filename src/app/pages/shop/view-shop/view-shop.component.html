@@ -19,23 +19,19 @@
   </div>
   <div class="container mt--8 pb-5">
     <div class="row justify-content-center">
-      <div class="col-lg-10 col-md-12">
+      <div class="col-8">
         <div class="card bg-secondary shadow border-0">
           <div class="card-body px-lg-5 py-lg-5">
             <div class="text-center">
               <p>Wygląd sklepu</p>
-              <button (click)="addRectangle()" class="btn btn-primary">Dodaj sektor</button>
-              <button (click)="exportObjects()" class="btn btn-success">Zapisz schemat</button>
+              <button *ngIf="id == 0" (click)="addRectangle()" class="btn btn-primary">Dodaj sektor</button>
+              <button *ngIf="id == 0" (click)="exportObjects()" class="btn btn-success">Zapisz schemat</button>
               <canvas class="mt-1" #myCanvas width="600" height="400"></canvas>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container mt-3 pb-3">
-    <div class="row justify-content-center">
-      <div class="col-12">
+      <div class="col-12 mt-2">
         <div class="card bg-secondary shadow border-0">
           <div class="card-body px-lg-5 py-lg-5">
             <h2>Twoje produkty</h2>
@@ -47,7 +43,7 @@
                   <th scope="col">Kategoria</th>
                   <th scope="col">Cena</th>
                   <th scope="col">ID półki</th>
-                  <th scope="col"></th>
+                  <th scope="col">Akcje</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,6 +53,7 @@
                       <td>{{ item.category }}</td>
                       <td>{{ item.price }}</td>
                       <td>{{ item.shelfId }}</td>
+                      <td><a (click)="selectShelveByProduct(item.id, item.shelfId)" href="javascript:void(0);"><i class="ni ni-active-40"></i> Pokaż</a></td>
                     </tr>
               </tbody>
           </table>
@@ -64,4 +61,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>    

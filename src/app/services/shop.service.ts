@@ -5,7 +5,7 @@ import { StorageService } from './storage.service';
 import { Shop, Shops } from '../models/shop.class';
 
 const SHOP_API = 'https://localhost:7143/Shop/';
-const SHELF_API = 'https://localhost:7143/Shelf/manageLayout'
+const SHELF_API = 'https://localhost:7143/Shelf/'
 var httpOptions = {
   headers: new HttpHeaders({  'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true', "X-Requested-With": "XMLHttpRequest" }),
   withCredentials: true,
@@ -70,7 +70,7 @@ export class ShopService {
     return this.http.get(SHOP_API + 'getByUserId', requestOptions);
   }
 
-  createShelves(shelves: any): Observable<any>{
+  createShelves(shopId: any, shelves: any): Observable<any>{
     const requestOptions = {
       params: {
         "userId": this.userId
@@ -79,18 +79,29 @@ export class ShopService {
       withCredentials: true
     };
 
-    this.http.get(SHOP_API + 'getByUserId', requestOptions).subscribe({
-      next: (data: Shops) => {
-        this.shopId = data.shop.id;
-      }});
+    // this.http.get(SHOP_API + 'getByUserId', requestOptions).subscribe({
+    //   next: (data: Shops) => {
+    //     this.shopId = data.shop.id;
+    //   }});
     
     return this.http.post(
-      SHELF_API,
+      SHELF_API + "manageLayout",
       {
-        "shopId": this.shopId,
+        "shopId": shopId,
         "shelves": shelves
       },
       httpOptions
     );
+  }
+
+  getShelves(shopId: any): Observable<any>{
+    const requestOptions = {
+      params: {
+        "shopId": shopId
+      },
+      headers: httpOptions.headers,
+      withCredentials: true
+    };
+    return this.http.get(SHELF_API + 'getAll', requestOptions);
   }
 }

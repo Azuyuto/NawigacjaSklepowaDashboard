@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
+import { ShopService } from 'src/app/services/shop.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -17,20 +18,40 @@ export class AddProductComponent implements OnInit {
     shelfId: null
   };
 
+  shop: any;
+  shelves: any;
   errorMessage = '';
   isFormFailed = false;
   isFormSuccess = false;
 
-  constructor(private productService: ProductService, private router: Router, private storageService: StorageService) {
+  constructor(private productService: ProductService, private router: Router, private storageService: StorageService, private shopService: ShopService) {
     this.form.email = storageService.getUser().email;
   }
 
   ngOnInit() {
+    this.shopService.getUserShop().subscribe({
+      next: data => {
+        this.shop = data.shop;
+        console.log(data);
+        this.shopService.getShelves(this.shop.id).subscribe({
+          next: data => {
+            this.shelves = data.shelves;
+            console.log(data);
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
   onSubmit(): void {
     const { name, description, category, price, shelfId } = this.form;
-    this.productService.addProduct(name, description, category, price, shelfId).subscribe({
+    this.productService.addProduct(name, description, category, price, shelfId, this.shop.id).subscribe({
       next: data => {
         this.isFormFailed = false;
         this.isFormSuccess = true;

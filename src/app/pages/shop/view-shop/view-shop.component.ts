@@ -30,6 +30,7 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
         next: data => {
           this.shop = data.shop;
           console.log(data);
+          this.updateShopData();
         },
         error: err => {
           console.log(err);
@@ -42,21 +43,38 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
         next: data => {
           this.shop = data.shop;
           console.log(data);
+          this.updateShopData();
         },
         error: err => {
           console.log(err);
         }
       });
     }
+  }
 
-    this.productService.getProductList().subscribe({
-      next: data => {
-        this.productList = data.products;
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+  updateShopData() {
+      // Products
+      this.productService.getProductsByShopId(this.shop.id).subscribe({
+        next: data => {
+          this.productList = data.products;
+          console.log(data);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+
+      // Shelves
+      this.shopService.getShelves(this.shop.id).subscribe({
+        next: data => {
+          this.objects = data.shelves;
+          this.drawObjects();
+          console.log(data);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
   }
 
   ngAfterViewInit() {
@@ -142,7 +160,8 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
   }
 
   exportObjects() {
-    this.shopService.createShelves(this.objects).subscribe({
+    this.resetColor();
+    this.shopService.createShelves(this.shop.id, this.objects).subscribe({
       next: data => {
         setTimeout(() => {
           window.location.assign('/list-shop');
@@ -153,7 +172,6 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
       }
     });
     console.log(this.objects);
-    // TODO: dodać zapis do bazy danych
   }
 
   isInsideRectangle(x: number, y: number, rect: any) {
@@ -165,5 +183,17 @@ export class ViewShopComponent implements OnInit, AfterViewInit {
     const resizeHandleX = rect.x + rect.width;
     const resizeHandleY = rect.y + rect.height;
     return x >= resizeHandleX - handleSize && x <= resizeHandleX && y >= resizeHandleY - handleSize && y <= resizeHandleY;
+  }
+
+  selectShelveByProduct(productId: any, shelfeId: any){
+    this.resetColor();
+    this.objects.find(a => a.id == shelfeId).color = "red";
+    this.drawObjects();
+  }
+
+  resetColor(){
+    this.objects.forEach(ob => {
+      ob.color = "#8859ff"
+    });
   }
 }

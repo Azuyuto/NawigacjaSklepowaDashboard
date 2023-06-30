@@ -19,10 +19,10 @@ export const ROUTES: RouteInfo[] = [
     { path: 'add-employee', title: 'Dodaj pracownika',  icon:'ni-fat-add text-blue', class: '', action: ActionTypes.None },
     { path: 'list-employees', title: 'Zobacz pracowników',  icon:'ni-single-02 text-blue', class: '', action: ActionTypes.None },
     { path: 'dashboard', title: 'Pulpit',  icon: 'ni-tv-2 text-blue', class: '', action: ActionTypes.None },
-    { path: 'icons', title: 'Icons',  icon:'ni-planet text-blue', class: '', action: ActionTypes.None },
-    { path: 'maps', title: 'Maps',  icon:'ni-pin-3 text-blue', class: '', action: ActionTypes.None },
-    { path: 'user-profile', title: 'User profile',  icon:'ni-single-02 text-blue', class: '', action: ActionTypes.None },
-    { path: 'tables', title: 'Tables',  icon:'ni-bullet-list-67 text-blue', class: '', action: ActionTypes.None },
+    // { path: 'icons', title: 'Icons',  icon:'ni-planet text-blue', class: '', action: ActionTypes.None },
+    // { path: 'maps', title: 'Maps',  icon:'ni-pin-3 text-blue', class: '', action: ActionTypes.None },
+    // { path: 'user-profile', title: 'User profile',  icon:'ni-single-02 text-blue', class: '', action: ActionTypes.None },
+    // { path: 'tables', title: 'Tables',  icon:'ni-bullet-list-67 text-blue', class: '', action: ActionTypes.None },
     { path: '', title: 'Wyloguj',  icon:'ni-button-power text-blue', class: '', action: ActionTypes.Logout},
 ];
 

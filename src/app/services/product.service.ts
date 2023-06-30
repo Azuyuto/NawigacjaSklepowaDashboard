@@ -25,7 +25,7 @@ export class ProductService {
     this.isClient = storageService.isClient();
   }
 
-  addProduct(name: any, description: any, category: any, price: any, shelfId: any): Observable<any> {
+  addProduct(name: any, description: any, category: any, price: any, shelfId: any, shopId: any): Observable<any> {
     return this.http.post(
       AUTH_API + 'createProduct',
       {
@@ -33,7 +33,8 @@ export class ProductService {
         "description": description,
         "category": category,
         "price": price,
-        "shelfId": shelfId
+        "shelfId": shelfId,
+        "shopId": shopId
       },
       httpOptions
     );
@@ -48,5 +49,16 @@ export class ProductService {
       withCredentials: true
     };
     return this.http.get(AUTH_API + GETPRODUCTS_API, requestOptions);
+  }
+
+  getProductsByShopId(shopId: any): Observable<any> {
+    const requestOptions = {
+      params: {
+        "shopId": shopId
+      },
+      headers: httpOptions.headers,
+      withCredentials: true
+    };
+    return this.http.get(AUTH_API + "getByShopId", requestOptions);
   }
 }
